@@ -14,6 +14,8 @@ ENV SESSION_DRIVER file
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+RUN docker-php-ext-install pdo_pgsql pgsql
+
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs bootstrap/cache
 RUN chmod -R 777 storage bootstrap/cache
