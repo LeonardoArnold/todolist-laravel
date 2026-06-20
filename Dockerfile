@@ -14,6 +14,7 @@ ENV SESSION_DRIVER file
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+RUN apk add --no-cache postgresql-dev
 RUN docker-php-ext-install pdo_pgsql pgsql
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
