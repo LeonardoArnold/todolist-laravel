@@ -1,4 +1,4 @@
-﻿FROM richarvey/nginx-php-fpm:php8.3-latest
+﻿FROM tangramor/nginx-php8-fpm:latest
 
 COPY . .
 
