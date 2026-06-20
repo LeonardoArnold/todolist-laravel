@@ -15,6 +15,7 @@ ENV SESSION_DRIVER file
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
-RUN chmod -R 775 storage bootstrap/cache
+RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs bootstrap/cache
+RUN chmod -R 777 storage bootstrap/cache
 
 CMD sh -c "php artisan migrate --force; /start.sh"
