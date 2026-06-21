@@ -95,11 +95,12 @@ TELEGRAM_CHAT_ID=id_do_seu_grupo
 
 O deploy é feito automaticamente no **Render** a cada `git push` na branch `main`, usando **Docker** para empacotar a aplicação (já que o Render não tem runtime nativo de PHP). O banco de dados em produção é um **PostgreSQL** gerenciado pelo próprio Render.
 
-## 👤 Autor
+## 👤 Autores
 
-**Leonardo Arnold**
-[GitHub](https://github.com/LeonardoArnold)
+**Leonardo Arnold** — [GitHub](https://github.com/LeonardoArnold)
+
 **Ghilherme Borghezan**
+
 **João Victor da Silva Santos**
 
 ---
