@@ -99,6 +99,8 @@ O deploy é feito automaticamente no **Render** a cada `git push` na branch `mai
 
 **Leonardo Arnold**
 [GitHub](https://github.com/LeonardoArnold)
+**Ghilherme Borghezan**
+**João Victor da Silva Santos**
 
 ---
 
