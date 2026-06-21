@@ -7,10 +7,21 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tarefas = Task::all();
-        return view('tarefas.index', compact('tarefas'));
+        $filtro = $request->query('filtro', 'todas');
+
+        $query = Task::query();
+        if ($filtro === 'pendentes') {
+            $query->where('feito', false);
+        } elseif ($filtro === 'feitas') {
+            $query->where('feito', true);
+        }
+        $tarefas = $query->latest()->get();
+
+        $totalPendentes = Task::where('feito', false)->count();
+
+        return view('tarefas.index', compact('tarefas', 'filtro', 'totalPendentes'));
     }
 
     public function create()
@@ -20,9 +31,15 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        Task::create($request->validate([
-            'titulo' => 'required|string|max:255',
-        ]));
+        $request->validate([
+            'titulo' => 'required|string|min:3|max:255',
+        ], [
+            'titulo.required' => 'O título é obrigatório.',
+            'titulo.min' => 'O título precisa ter pelo menos 3 caracteres.',
+            'titulo.max' => 'O título pode ter no máximo 255 caracteres.',
+        ]);
+
+        Task::create(['titulo' => $request->titulo]);
         return redirect()->route('tarefas.index')->with('mensagem', 'Tarefa criada!');
     }
 
@@ -42,7 +59,6 @@ class TaskController extends Controller
             'titulo' => $request->validate(['titulo' => 'required|string|max:255'])['titulo'],
             'feito' => $request->has('feito'),
         ]);
-
         return redirect()->route('tarefas.index')->with('mensagem', 'Tarefa atualizada!');
     }
 

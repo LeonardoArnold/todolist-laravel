@@ -14,7 +14,7 @@
             @csrf
             <div class="mb-4">
                 <label for="titulo" class="block text-sm font-semibold mb-2">Título</label>
-                <input type="text" id="titulo" name="titulo" required class="w-full border border-gray-300 rounded px-3 py-2" placeholder="O que você precisa fazer?">
+                <input type="text" id="titulo" name="titulo" value="{{ old('titulo') }}" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="O que você precisa fazer?">
                 @error('titulo')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
