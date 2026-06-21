@@ -1,58 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📋 To-Do List — Lista de Tarefas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.5-777BB4?logo=php&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-4169E1?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?logo=render&logoColor=white)
 
-## About Laravel
+Aplicação web de **lista de tarefas (to-do list)** desenvolvida em **Laravel (PHP)**, com operações completas de **CRUD**, notificações em tempo real via **Telegram** e deploy na nuvem.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Projeto desenvolvido para a disciplina de **Desenvolvimento Baseado em Frameworks** (UNIGUAÇU).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌐 Demo online
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A aplicação está hospedada e rodando em:
 
-## Learning Laravel
+**https://todolist-laravel-s8ns.onrender.com**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+> ⚠️ **Observação:** o serviço usa o plano gratuito do Render, que "hiberna" após alguns minutos de inatividade. O **primeiro acesso** pode levar até ~50 segundos para "acordar" o servidor. Depois disso, fica rápido normalmente.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Funcionalidades
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- ✅ **CRUD completo** — criar, listar, editar e excluir tarefas
+- ✅ **Marcar como concluída / reabrir** com um clique
+- 🔎 **Filtros** — visualizar todas, apenas pendentes ou apenas concluídas
+- 🔢 **Contador** de tarefas pendentes
+- 📝 **Validação de formulário** com mensagens em português
+- 📲 **Notificações no Telegram** — toda ação (criar, concluir, reabrir, editar, remover) envia um aviso automático para um grupo
+- 🕒 **Fuso horário** ajustado para o horário de Brasília (UTC-3)
 
-## Agentic Development
+## 🛠️ Tecnologias utilizadas
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Tecnologia | Uso |
+|---|---|
+| **PHP 8.5** | Linguagem do back-end |
+| **Laravel 13** | Framework (rotas, MVC, Eloquent) |
+| **Blade** | Templates / views |
+| **Tailwind CSS** | Estilização (via CDN) |
+| **Composer** | Gerenciador de dependências |
+| **SQLite** | Banco de dados em ambiente local |
+| **PostgreSQL** | Banco de dados em produção |
+| **Docker** | Containerização da aplicação |
+| **Git + GitHub** | Versionamento e repositório |
+| **Render** | Hospedagem em nuvem |
+| **API do Telegram** | Notificações automáticas |
+
+## 🚀 Como rodar o projeto localmente
+
+### Pré-requisitos
+
+- PHP 8.3 ou superior
+- Composer
+- Git
+
+### Passo a passo
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clonar o repositório
+git clone https://github.com/LeonardoArnold/todolist-laravel.git
+cd todolist-laravel
 
-php artisan boost:install
+# 2. Instalar as dependências
+composer install
+
+# 3. Criar o arquivo de ambiente
+cp .env.example .env
+
+# 4. Gerar a chave da aplicação
+php artisan key:generate
+
+# 5. Criar o banco SQLite local
+# (crie um arquivo vazio em database/database.sqlite)
+
+# 6. Rodar as migrations (cria as tabelas)
+php artisan migrate
+
+# 7. Subir o servidor
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Depois, acesse **http://localhost:8000** no navegador.
 
-## Contributing
+### Configurar as notificações do Telegram (opcional)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Para ativar os avisos no Telegram, adicione ao arquivo `.env`:
 
-## Code of Conduct
+```env
+TELEGRAM_BOT_TOKEN=seu_token_do_botfather
+TELEGRAM_CHAT_ID=id_do_seu_grupo
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> O token é gerado pelo **@BotFather** no Telegram, e o `chat_id` é obtido adicionando o bot ao grupo e consultando a API.
 
-## Security Vulnerabilities
+## ☁️ Deploy
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+O deploy é feito automaticamente no **Render** a cada `git push` na branch `main`, usando **Docker** para empacotar a aplicação (já que o Render não tem runtime nativo de PHP). O banco de dados em produção é um **PostgreSQL** gerenciado pelo próprio Render.
 
-## License
+## 👤 Autor
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Leonardo Arnold**
+[GitHub](https://github.com/LeonardoArnold)
+
+---
+
+<p align="center">Desenvolvido para a disciplina de Desenvolvimento Baseado em Frameworks — UNIGUAÇU</p>
