@@ -47,7 +47,7 @@
                         <h3 class="font-semibold {{ $tarefa->feito ? 'line-through text-gray-400' : '' }}">
                             {{ $tarefa->titulo }}
                         </h3>
-                        <p class="text-sm text-gray-500">{{ $tarefa->created_at->format('d/m/Y H:i') }}</p>
+                        <p class="text-sm text-gray-500">{{ $tarefa->created_at->timezone('America/Sao_Paulo')->format('d/m/Y H:i') }}</p>
                     </div>
                     <div class="flex gap-2">
                         <form action="{{ route('tarefas.toggle', $tarefa) }}" method="POST" style="display:inline;">
